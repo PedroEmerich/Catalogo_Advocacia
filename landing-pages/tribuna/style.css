@@ -910,6 +910,37 @@ h3 {
   margin-top: 2rem;
 }
 
+/* Logo completa (marca + nome) no rodapé */
+.brand-logo {
+  display: inline-block;
+}
+
+.brand-logo img {
+  width: auto;
+  height: 46px;
+}
+
+.partners--single {
+  grid-template-columns: minmax(0, 52rem) !important;
+}
+
+/* O nome completo do advogado precisa caber ao lado do menu no celular. */
+@media (max-width: 480px) {
+  .brand__name {
+    font-size: 1.15rem;
+  }
+
+  .brand__name small {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+
+  .brand__mark {
+    width: 38px;
+    height: 38px;
+  }
+}
+
 /* Rodapé */
 .site-footer {
   padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;

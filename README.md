@@ -1,18 +1,31 @@
 # Catálogo Advocacia
 
-Catálogo com **três modelos de landing page para escritórios de advocacia**, prontos para campanhas de Google Ads. Os modelos são chamados pelos nomes das pastas: **Tribuna** (01), **Átrio** (02) e **Prumo** (03). Todos usam o escritório fictício **Vilela & Prado Advogados Associados**.
+Catálogo com **três modelos de landing page para o escritório Juliano de Paula Ignácio Advocacia** — direito médico, da saúde e do consumidor —, prontos para campanhas de Google Ads. Os modelos são chamados pelos nomes das pastas: **Tribuna** (01), **Átrio** (02) e **Prumo** (03).
 
-**Os três modelos trazem as quatro áreas completas — trabalhista, família e sucessões, previdenciário (INSS) e consumidor e cível — com o mesmo peso:** descrição, serviços, botão que já seleciona o assunto no formulário e respostas no FAQ para cada uma. O que muda entre eles é a identidade visual, o tom e os recursos de conversão.
+**Os três modelos trazem as quatro frentes do escritório — plano de saúde, direito médico e erro médico, SUS e medicamentos e direito do consumidor — com o mesmo peso:** descrição, serviços, botão que já seleciona o assunto no formulário e respostas no FAQ para cada uma. O que muda entre eles é a identidade visual, o tom e os recursos de conversão.
 
 | # | Modelo | Estilo | Destaques | Visual |
 |---|--------|--------|-----------|--------|
-| 01 | [Tribuna](landing-pages/tribuna/index.html) | Clássica e sóbria | Balança no hero que pende para o lado do cursor, formulário na primeira dobra, linha do tempo do atendimento, sócios com OAB e FAQ com prazos | Papel creme, azul-marinho e dourado · Cormorant Garamond + Source Sans 3 |
-| 02 | [Átrio](landing-pages/atrio/index.html) | Escura e editorial | Luz dourada que segue o cursor, áreas em abas, checklist “existe prazo correndo no seu caso?” que leva o resultado ao formulário, numerais romanos que deslizam com a rolagem | Verde quase preto, marfim e dourado · Playfair Display + Inter |
-| 03 | [Prumo](landing-pages/prumo/index.html) | Moderna e acolhedora | “Conte seu caso” em 3 etapas no hero, cartões pastel por área, prazos importantes com contagem animada, seção para pessoas e empresas | Claro, verde-petróleo e tons pastel · Fraunces + Plus Jakarta Sans |
+| 01 | [Tribuna](landing-pages/tribuna/index.html) | Clássica e sóbria | Balança no hero que pende para o lado do cursor, formulário na primeira dobra, linha do tempo do atendimento, perfil do Dr. Juliano e FAQ sobre plano de saúde, rol da ANS, erro médico e SUS | Papel creme, azul-marinho e dourado · Cormorant Garamond + Source Sans 3 |
+| 02 | [Átrio](landing-pages/atrio/index.html) | Escura e editorial | Luz dourada que segue o cursor, áreas em abas, checklist “o seu caso pede atenção imediata?” que leva o resultado ao formulário, numerais romanos que deslizam com a rolagem | Verde quase preto, marfim e dourado · Playfair Display + Inter |
+| 03 | [Prumo](landing-pages/prumo/index.html) | Moderna e acolhedora | “Plano de saúde negou?” com “Conte seu caso” em 3 etapas, cartões pastel por área, prazos de atendimento da ANS com contagem animada, seção para pacientes e profissionais da saúde | Claro, verde-petróleo e tons pastel · Fraunces + Plus Jakarta Sans |
 
 A página inicial ([`index.html`](index.html)) é a vitrine: mostra as prévias, as características de cada modelo e permite ver cada página em desktop, tablet e celular sem sair do catálogo.
 
-> **Escritório, nomes, registros na OAB, endereço e números são fictícios** — troque pelos reais antes de usar em campanha. O WhatsApp de demonstração é `(11) 97080-3077`. As páginas vêm com `<meta name="robots" content="noindex">` enquanto forem demonstração.
+## Dados do escritório usados nas páginas
+
+Reunidos a partir dos perfis públicos do advogado (Jusbrasil, Escavador e JurisCorrespondente):
+
+- **Dr. Juliano de Paula Ignácio**, advogado de direito médico, da saúde e do consumidor;
+- 10 anos de experiência, com histórico também nas esferas cível e penal;
+- atuação em comarcas da capital paulista, do Grande ABC e de Minas Gerais;
+- apresentação pessoal do perfil: “Advogado obstinado, pai amoroso, filho dedicado, marido companheiro”.
+
+**Antes de publicar, confirme com o escritório:** o número da OAB (as páginas mostram `OAB/SP nº 000.000`, marcado com um comentário no HTML), o WhatsApp (as páginas usam o de demonstração, `(11) 97080-3077`), e-mail, endereço e uma foto do advogado para o perfil da Tribuna. As páginas vêm com `<meta name="robots" content="noindex">` enquanto forem demonstração.
+
+## Logo
+
+A logo foi criada para o escritório: uma balança da justiça cujo ponto de apoio é um selo com a cruz da saúde, unindo direito e saúde, acompanhada do nome em Cormorant Garamond e da linha “Advocacia · Saúde e Consumidor”. Os textos da logo completa estão convertidos em curvas, então ela aparece igual em qualquer computador.
 
 ## Publicidade na advocacia (OAB)
 
@@ -21,9 +34,9 @@ Os textos foram escritos para respeitar o Código de Ética e o **Provimento 205
 - caráter informativo e sóbrio, sem promessa de resultado (“ganhe sua causa”, “garantimos”);
 - sem divulgação de preços, descontos ou “consulta gratuita” — o FAQ explica que os honorários seguem a tabela da OAB e são combinados por escrito;
 - sem depoimentos de clientes nem números de causas ganhas; a prova social é institucional (anos de atuação, áreas, equipe, registro na OAB);
-- nome e número de inscrição dos advogados e da sociedade no rodapé e nos perfis.
+- nome e número de inscrição do advogado no rodapé e no perfil.
 
-Ao personalizar, mantenha essa linha. Prazos citados nas páginas (2 anos na ação trabalhista, 30 dias no recurso ao INSS, 2 meses para abrir o inventário, 5 anos para danos ao consumidor) são regras gerais e vêm acompanhados do aviso de que cada caso precisa de análise individual.
+Ao personalizar, mantenha essa linha. Referências citadas nas páginas — Lei 14.454/2022 (rol da ANS), prazos máximos de atendimento da ANS (imediato, 7, 14 e 21 dias úteis), prazo de 5 anos para indenização por erro médico e critérios do STF para medicamentos pelo SUS — são regras gerais e vêm acompanhadas do aviso de que cada caso precisa de análise individual.
 
 ## Interações de scroll e cursor
 
@@ -56,8 +69,10 @@ assets/
   shared/
     base.css                reset, utilidades e estados comuns
     lp.js                   comportamentos compartilhados (formulários, abas, checklist…)
-    logo-vp.svg             logo para fundos escuros/neutros (também é o favicon)
-    logo-vp-light.svg       logo para o rodapé escuro da Tribuna
+    logo-ji.svg             marca do escritório (balança + cruz da saúde); também é o favicon
+    logo-ji-light.svg       marca em versão clara
+    logo-juliano.svg        logo completa (marca + nome) para fundos claros
+    logo-juliano-light.svg  logo completa para fundos escuros
 landing-pages/
   tribuna/   atrio/   prumo/
     index.html              conteúdo da página
@@ -68,18 +83,18 @@ scripts/capturar-previews.js  regenera as imagens de assets/previews
 
 ## O que os modelos incluem
 
-- **As quatro áreas completas:** trabalhista, família e sucessões, previdenciário e consumidor e cível, cada uma com serviços e botão que já marca o assunto no formulário; FAQ cobrindo todas as áreas.
-- **Palavras-chave das buscas** (advogado trabalhista, advogado previdenciário, divórcio, inventário, INSS, plano de saúde) nas headlines e seções, então qualquer grupo de anúncios pode apontar para qualquer modelo.
+- **As quatro frentes completas:** plano de saúde, direito médico, SUS e medicamentos e direito do consumidor, cada uma com serviços e botão que já marca o assunto no formulário; FAQ cobrindo todas as frentes.
+- **Palavras-chave das buscas** (advogado de plano de saúde, negativa de cobertura, erro médico, medicamento pelo SUS, direito do consumidor) nas headlines e seções, então qualquer grupo de anúncios pode apontar para qualquer modelo.
 - **Formulário de contato** com validação em português, máscara de WhatsApp, consentimento LGPD, foco no primeiro erro e tela de sucesso com atalho para o WhatsApp levando o resumo do que foi preenchido.
 - **Parâmetros de campanha preservados:** `utm_source`, `utm_medium`, `utm_campaign`, `utm_term`, `utm_content`, `gclid`, `gbraid`, `wbraid` e a página de origem são enviados como campos ocultos.
 - **Eventos de conversão no `dataLayer`:** `generate_lead` (envio do formulário) e `whatsapp_click` (qualquer link de WhatsApp, com `link_location`).
 - **Credibilidade institucional, processo de atendimento, FAQ** e botão flutuante de WhatsApp.
 - **Responsiva e acessível:** navegação por teclado, link “pular para o conteúdo”, contraste adequado e animações desligadas para quem prefere menos movimento. Sem JavaScript, o conteúdo continua visível e os formulários usam a validação nativa do navegador.
 
-## Como adaptar um modelo para um escritório real
+## Como adaptar ou reaproveitar um modelo
 
 1. **Copie** a pasta `landing-pages/<modelo>` junto com `assets/shared` (ajuste os caminhos `../../assets/shared/` se mudar a estrutura).
-2. **Marca e textos:** troque nome do escritório, logo, advogados e números de OAB, áreas, endereço e textos. Cores e fontes ficam nas variáveis no topo do `style.css`; o link das Google Fonts fica no `<head>`.
+2. **Marca e textos:** ajuste logo, nome, número da OAB, áreas, endereço e textos. Cores e fontes ficam nas variáveis no topo do `style.css`; o link das Google Fonts fica no `<head>`.
 3. **WhatsApp:** substitua `5511970803077` (DDI + DDD + número) em todo o `index.html` — ele aparece nos links `wa.me` e no atributo `data-whatsapp` do `<body>`. A mensagem inicial de cada formulário fica em `data-wa-intro`.
 4. **Receber os contatos:** por padrão o formulário valida, mostra a tela de sucesso e oferece continuar no WhatsApp. Para enviar os dados a um serviço, adicione `action` ao `<form>`:
 

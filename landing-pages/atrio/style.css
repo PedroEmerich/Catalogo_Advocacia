@@ -941,6 +941,22 @@ html:not(.js) .tabs__panel[hidden] {
   }
 }
 
+/* Logo completa (marca + nome) no rodapé */
+.brand-logo {
+  display: inline-block;
+}
+
+.brand-logo img {
+  width: auto;
+  height: 46px;
+}
+
+@media (max-width: 480px) {
+  .brand__name {
+    font-size: 1.1rem;
+  }
+}
+
 /* Rodapé */
 .site-footer {
   padding: clamp(3rem, 6vw, 4.5rem) 0 2rem;

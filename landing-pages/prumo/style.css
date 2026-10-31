@@ -766,7 +766,7 @@ html:not(.js) .step + .step {
 
 .deadlines__value {
   font-family: var(--font-display);
-  font-size: 2.6rem;
+  font-size: clamp(1.9rem, 2.6vw, 2.3rem);
   font-weight: 600;
   line-height: 1;
   color: var(--primary);
@@ -1006,6 +1006,26 @@ html:not(.js) .step + .step {
   justify-content: center;
   gap: 0.75rem;
   margin-top: 2rem;
+}
+
+/* Logo completa (marca + nome) no rodapé */
+.brand-logo {
+  display: inline-block;
+}
+
+.brand-logo img {
+  width: auto;
+  height: 46px;
+}
+
+@media (max-width: 480px) {
+  .brand__name {
+    font-size: 0.95rem;
+  }
+
+  .brand__name small {
+    font-size: 0.7rem;
+  }
 }
 
 /* Rodapé */

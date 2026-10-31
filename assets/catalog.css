@@ -115,19 +115,8 @@ code {
 }
 
 .logo__mark {
-  display: grid;
-  place-items: center;
   width: 34px;
   height: 34px;
-  border-radius: 50%;
-  background: #14213d;
-  color: #d9bf8c;
-}
-
-.logo__mark .icon {
-  width: 20px;
-  height: 20px;
-  stroke-width: 1.8;
 }
 
 .top__nav {
@@ -182,6 +171,18 @@ code {
   margin-top: 1.5rem;
   font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   color: var(--ink-soft);
+}
+
+.intro__logo {
+  width: auto;
+  height: 44px;
+  margin-top: 1.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .intro__logo {
+    content: url('shared/logo-juliano-light.svg');
+  }
 }
 
 .fronts {
