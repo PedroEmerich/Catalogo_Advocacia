@@ -476,6 +476,7 @@
               </ul>
             </div>
           </div>
+          <div class="tabs__dots" aria-hidden="true" data-tabs-dots></div>
         </div>
       </div>
     </section>
@@ -503,11 +504,17 @@
               </div>
             </div>
             <div class="shelf__board" aria-hidden="true"></div>
+            <p class="shelf__hint" data-js-only>Toque em um livro para abrir.</p>
           </div>
         </div>
 
-        <div class="reader" data-reader data-reveal>
-          <div class="reader__book">
+        <div class="reader" data-reader aria-label="Livro aberto">
+          <div class="reader__bar">
+            <span class="reader__grip" aria-hidden="true"></span>
+            <p class="reader__label">Livro aberto</p>
+            <button class="reader__close" type="button" data-reader-close aria-label="Fechar o livro"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="reader__book" data-reveal>
             <div class="reader__page reader__page--left" data-reader-left aria-hidden="true"></div>
             <div class="reader__page reader__page--right" data-reader-right aria-live="polite">
               <article class="book-page" id="page-cf">
@@ -559,6 +566,7 @@
             </div>
           </div>
         </div>
+        <div class="reader-backdrop" data-reader-backdrop hidden></div>
       </div>
     </section>
 
@@ -848,6 +856,11 @@
         </div>
       </div>
     </section>
+
+    <nav class="mobile-bar" aria-label="Ações rápidas" data-mobile-bar>
+      <a class="btn btn--gold mobile-bar__cta" href="#contato">Contar meu caso <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="mobile-bar__wa" href="https://wa.me/5511970803077?text=Ol%C3%A1%2C%20Dr.%20Juliano!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20sobre%20o%20meu%20caso." target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp" data-track="barra-celular"><svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+    </nav>
 
     <a class="wa-float" href="https://wa.me/5511970803077?text=Ol%C3%A1%2C%20Dr.%20Juliano!%20Vim%20pelo%20site%20e%20gostaria%20de%20falar%20sobre%20o%20meu%20caso." target="_blank" rel="noopener" aria-label="Conversar pelo WhatsApp" data-track="botao-flutuante">
       <svg class="icon icon--fill" aria-hidden="true"><use href="#i-whatsapp"/></svg>

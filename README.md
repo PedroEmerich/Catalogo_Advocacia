@@ -20,6 +20,17 @@ Também: cursor dourado que acompanha o mouse (vira “Abrir” sobre os livros)
 
 **Acessível e robusta:** tudo funciona por teclado; com “reduzir movimento” ativado, as animações param, a balança aparece equilibrada e os livros trocam de página sem animar; sem JavaScript, as áreas, os artigos e o formulário aparecem completos. Em telas de toque não há cursor nem efeitos de hover.
 
+## No celular
+
+Até 699 px a página usa um layout próprio, não uma versão encolhida do desktop:
+
+- **Topo em ordem de leitura:** título, a balança logo abaixo, texto e botões em largura total; os destaques viram etiquetas.
+- **Barra fixa de ações** no rodapé da tela (“Contar meu caso” + WhatsApp), no lugar do botão flutuante. Ela aparece depois do topo, some quando o formulário está na tela e respeita a área segura do iPhone.
+- **Áreas de atuação em cartões que deslizam para o lado**, com pontos indicando qual está à vista.
+- **Livro aberto numa folha que sobe de baixo** (bottom sheet): toque num livro para abrir; feche pelo botão, tocando no fundo, com Esc ou arrastando a barra para baixo.
+- **Números numa faixa só**, cena da balança mais curta e com a balança maior, retrato menor, valores em duas colunas e o formulário logo depois do título.
+- **Pensado para o toque:** alvos de pelo menos 44 px, resposta visual ao tocar, sem efeitos de hover “grudados” e sem o cursor dourado.
+
 ## Animações e desempenho
 
 Tudo que se move em `assets/fx.js` passa por **um único laço de `requestAnimationFrame`** e por **molas integradas em passos fixos** (1/240 s), então o movimento é o mesmo em telas de 60, 90 ou 144 Hz e não “pula” quando a rolagem chega em degraus (roda do mouse). Os elementos se movem **só com `transform` e `opacity`**, sem transições CSS disputando com a animação, e as medidas de layout ficam em cache.

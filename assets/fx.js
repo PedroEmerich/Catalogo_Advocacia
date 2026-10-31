@@ -69,7 +69,11 @@
   }
 
   root.classList.add('fx');
+  // Layout de celular: livro em folha que sobe de baixo, barra fixa de ações e carrossel de áreas.
+  const phone = window.matchMedia('(max-width: 699px)');
   initReader();
+  initMobileBar();
+  initAreaCarousel();
 
   if (reduceMotion) return;
   root.classList.add('fx-motion');
@@ -633,6 +637,66 @@
     });
   }
 
+  /* Barra fixa do celular: aparece depois do topo e some perto do formulário */
+
+  function initMobileBar() {
+    const bar = document.querySelector('[data-mobile-bar]');
+    const heroActions = document.querySelector('.hero__actions');
+    const contact = document.getElementById('contato');
+    if (!bar || !heroActions || !contact) return;
+    const seen = { hero: true, contact: false };
+    const update = () => bar.classList.toggle('is-visible', !seen.hero && !seen.contact);
+    new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        seen[entry.target === contact ? 'contact' : 'hero'] = entry.isIntersecting;
+      });
+      update();
+    }).observe(heroActions);
+    new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        seen.contact = entry.isIntersecting;
+      });
+      update();
+    }, { rootMargin: '0px 0px -35% 0px' }).observe(contact);
+  }
+
+  /* Áreas no celular: cartões que deslizam para o lado, com pontos ---------- */
+
+  function initAreaCarousel() {
+    const track = document.querySelector('.tabs__panels');
+    const dots = document.querySelector('[data-tabs-dots]');
+    if (!track || !dots) return;
+    const panels = Array.from(track.querySelectorAll('[role="tabpanel"]'));
+    const buttons = panels.map((panel, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.tabIndex = -1;
+      dot.className = 'tabs__dot';
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: panels[i].offsetLeft - track.offsetLeft - (track.clientWidth - panels[i].offsetWidth) / 2, behavior: reduceMotion ? 'auto' : 'smooth' });
+      });
+      dots.append(dot);
+      return dot;
+    });
+    let active = -1;
+    const update = () => {
+      if (!phone.matches) return;
+      const center = track.scrollLeft + track.clientWidth / 2;
+      let index = 0;
+      panels.forEach((panel, i) => {
+        const panelCenter = panel.offsetLeft - track.offsetLeft + panel.offsetWidth / 2;
+        const best = panels[index].offsetLeft - track.offsetLeft + panels[index].offsetWidth / 2;
+        if (Math.abs(panelCenter - center) < Math.abs(best - center)) index = i;
+      });
+      if (index === active) return;
+      active = index;
+      buttons.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+    };
+    track.addEventListener('scroll', update, { passive: true });
+    phone.addEventListener('change', update);
+    update();
+  }
+
   /* Leitor: o livro escolhido abre com a página virando ------------------- */
 
   function initReader() {
@@ -646,9 +710,76 @@
     const leaf = reader.querySelector('[data-reader-leaf]');
     const front = leaf?.querySelector('[data-leaf-front]');
     const back = leaf?.querySelector('[data-leaf-back]');
+    const backdrop = document.querySelector('[data-reader-backdrop]');
+    const closeButton = reader.querySelector('[data-reader-close]');
+    const bar = reader.querySelector('.reader__bar');
     const TURN = 950;
     let current = Math.max(0, books.findIndex((book) => book.getAttribute('aria-pressed') === 'true'));
     let timer = 0;
+    let opener = null;
+
+    /* No celular o livro abre numa folha que sobe da parte de baixo da tela. */
+    const sheetOpen = () => reader.classList.contains('is-open');
+    const openSheet = (book) => {
+      opener = book;
+      reader.setAttribute('role', 'dialog');
+      reader.setAttribute('aria-modal', 'true');
+      backdrop.hidden = false;
+      void backdrop.offsetWidth;
+      reader.classList.add('is-open');
+      backdrop.classList.add('is-open');
+      document.body.classList.add('sheet-open');
+      reader.scrollTop = 0;
+      closeButton?.focus({ preventScroll: true });
+    };
+    const closeSheet = () => {
+      if (!sheetOpen()) return;
+      reader.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      document.body.classList.remove('sheet-open');
+      reader.removeAttribute('role');
+      reader.removeAttribute('aria-modal');
+      reader.style.removeProperty('transform');
+      window.setTimeout(() => {
+        if (!sheetOpen()) backdrop.hidden = true;
+      }, 450);
+      opener?.focus({ preventScroll: true });
+    };
+    closeButton?.addEventListener('click', closeSheet);
+    backdrop?.addEventListener('click', closeSheet);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeSheet();
+    });
+    phone.addEventListener('change', () => {
+      if (!phone.matches) closeSheet();
+    });
+
+    // Arrastar a barra da folha para baixo fecha o livro, como num aplicativo.
+    if (bar) {
+      let startY = null;
+      let dragged = 0;
+      bar.addEventListener('pointerdown', (event) => {
+        if (!sheetOpen() || event.target.closest('button')) return;
+        startY = event.clientY;
+        dragged = 0;
+        reader.classList.add('is-dragging');
+        bar.setPointerCapture(event.pointerId);
+      });
+      bar.addEventListener('pointermove', (event) => {
+        if (startY === null) return;
+        dragged = Math.max(0, event.clientY - startY);
+        reader.style.transform = `translate3d(0, ${dragged}px, 0)`;
+      });
+      const release = () => {
+        if (startY === null) return;
+        startY = null;
+        reader.classList.remove('is-dragging');
+        reader.style.removeProperty('transform');
+        if (dragged > 90) closeSheet();
+      };
+      bar.addEventListener('pointerup', release);
+      bar.addEventListener('pointercancel', release);
+    }
 
     // Página da esquerda: ornamento, nome do livro e artigo (cópia do cabeçalho do artigo).
     const frontispiece = (index) => {
@@ -671,13 +802,15 @@
     };
 
     const open = (index) => {
+      const asSheet = phone.matches;
+      if (asSheet) openSheet(books[index]);
       if (index === current) return;
       if (timer) settle(); // termina na hora uma virada que ainda estava acontecendo
       const previous = current;
       current = index;
       books.forEach((book, i) => book.setAttribute('aria-pressed', String(i === index)));
 
-      if (!reduceMotion && leaf && front && back) {
+      if (!reduceMotion && !asSheet && leaf && front && back) {
         // Frente da folha = página que sai; verso = frontispício do livro que entra.
         const copy = document.createElement('div');
         copy.className = 'book-page';
@@ -696,9 +829,9 @@
         page.hidden = i !== index;
       });
 
-      // No celular o livro aberto fica abaixo da estante: traz a página para a tela.
+      // Se o livro aberto estiver fora da tela, traz a página para perto da estante.
       const rect = reader.getBoundingClientRect();
-      if (rect.top > window.innerHeight - 160 || rect.bottom < 0) {
+      if (!asSheet && (rect.top > window.innerHeight - 160 || rect.bottom < 0)) {
         reader.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' });
       }
     };
